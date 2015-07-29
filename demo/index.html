@@ -14,23 +14,63 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <title>ll-theme Demo</title>
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../../polymer/polymer.html">
     <link rel="import" href="../ll-theme.html">
   </head>
   <body>
-
-    <p>An example of <code>&lt;ll-theme&gt;</code>:</p>
-
-    <button>Say Something</button>
-
-    <ll-theme author='{"name": "Lord Meowser", "image": "http://placekitten.com/g/200/300"}' fancy>
-      <h2>Hello ll-theme</h2>
-    </ll-theme>
-
-    <script>
-      document.querySelector('button').addEventListener('click', function() {
-        alert(document.querySelector('ll-theme').sayHello('Hallo!'));
-      });
-    </script>
-
+    <font-demo></font-demo>
   </body>
+  <dom-module id="font-demo">
+    <style is="custom-style">
+      :host {
+        @apply(--ll-font-normal);
+      }
+
+      button {
+        @apply(--ll-base-button);
+      }
+
+      button:hover,
+      button:focus,
+      button.focus{
+         color: #333;
+         text-decoration: none;
+       }
+
+      button:active,
+      button.active {
+         outline: 0;
+         background-image: none;
+        -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+        box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+       }
+
+      button.disabled,
+      button[disabled],
+      fieldset[disabled]  {
+         cursor: not-allowed;
+        opacity: .65;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+     }
+
+      button[primary] {
+        color: white;
+        background-color: #337ab7;
+        border-color: #ccc;
+      }
+
+    </style>
+    <template>
+      <h1>Hello World</h1>
+      <p>This is my awesome template.</p>
+      <button primary>My Button</button>
+    </template>
+
+  </dom-module>
+  <script>
+    Polymer({
+      is: 'font-demo'
+    })
+  </script>
 </html>
