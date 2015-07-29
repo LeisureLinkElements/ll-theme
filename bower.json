@@ -1,6 +1,6 @@
 {
   "name": "ll-theme",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "authors": [
     "Anonymous <anonymous@example.com>"
   ],
@@ -20,7 +20,9 @@
     "/demo/"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.0.0"
+    "polymer": "Polymer/polymer#^1.0.0",
+    "ui-bootstrap": "git@github.com:LeisureLink/ui-bootstrap.git#gh-pages",
+    "ui-layout": "git@github.com:LeisureLink/ui-layout.git#develop"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
