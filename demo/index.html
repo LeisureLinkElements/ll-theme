@@ -22,55 +22,178 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </body>
   <dom-module id="font-demo">
     <style is="custom-style">
-      :host {
-        @apply(--ll-font-normal);
+
+      .palette {
+        width: 200px;
+        font-size:0;
+        display: inline-block;
+        margin: 20px;
       }
 
-      button {
-        @apply(--ll-base-button);
+      .palette .color {
+        height: 70px;
       }
 
-      button:hover,
-      button:focus,
-      button.focus{
-         color: #333;
-         text-decoration: none;
-       }
+      .name, .value {
+        font-size: 20px;
+        vertical-align: top;
+        padding: 0 10px;
+      }
 
-      button:active,
-      button.active {
-         outline: 0;
-         background-image: none;
-        -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
-        box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
-       }
-
-      button.disabled,
-      button[disabled],
-      fieldset[disabled]  {
-         cursor: not-allowed;
-        opacity: .65;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-     }
-
-      button[primary] {
-        color: white;
-        background-color: #337ab7;
-        border-color: #ccc;
+      .value {
+        font-size: 12px;;
       }
 
     </style>
     <template>
-      <h1>Hello World</h1>
-      <p>This is my awesome template.</p>
-      <button primary>My Button</button>
+      <h1>Color variables</h1>
+      <hr>
+      <template is="dom-repeat" items="{{colors}}">
+        <div id="palette" class$="{{_getClasses(item)}}">
+          <div class="color" ></div>
+          <div class="name">{{_getColorDisplay(item.color)}}</div>
+          <div class="value">[[item.value]]</div>
+        </div>
+        </template>
     </template>
-
   </dom-module>
   <script>
     Polymer({
-      is: 'font-demo'
+      is: 'font-demo',
+      properties: {
+        colors: {
+          type: Array,
+          value: [
+            {
+              color: 'lighten',
+              value: 'rgba(255, 255, 255, .25)'
+            },{
+              color: 'lighten-more',
+              value: 'rgba(255, 255, 255, .1)'
+            },{
+              color: '-darken',
+              value: 'rgba(0, 0, 0, .25)'
+            },{
+              color: 'darken-more',
+              value: 'rgba(0, 0, 0, .1)'
+            },{
+              color: 'gray-lighter',
+              value: '#fff'
+            },{
+              color: 'gray-light',
+              value: '#f5f5f5'
+            },{
+              color: 'gray',
+              value: '#e6e6e6'
+            },{
+              color: 'gray-medium',
+              value: '#5d5d60'
+            },{
+              color: 'gray-dark',
+              value: '#4d4d4f'
+            },{
+              color: 'gray-darker',
+              value: '#353538'
+            },{
+              color: 'disabled',
+              value: '#a1a1a1'
+            },{
+              color: 'disabled-light',
+              value: '#999'
+            },{
+              color: 'blue',
+              value: '#0069aa'
+            },{
+              color: 'blue-pastel',
+              value: '#249ea2'
+            },{
+              color: 'blue-light',
+              value: '#3597d3'
+            },{
+              color: 'blue-lighter',
+              value: '#7bc6f4'
+            },{
+              color: 'blue-lightest',
+              value: '#CCE1EE'
+            },{
+              color: 'blue-dark',
+              value: '#005183'
+            },{
+              color: 'yellow',
+              value: '#f4ce3c'
+            },{
+              color: 'green',
+              value: '#76bd1d'
+            },{
+              color: 'green-light',
+              value: '#f2fae6'
+            },{
+              color: 'orange',
+              value: '#ee7421'
+            },{
+              color: 'white',
+              value: 'gb(255, 255, 255)'
+            },{
+              color: 'red-light',
+              value: '#f2dede'
+            },{
+              color: 'red',
+              value: '#f10400'
+            },{
+              color: 'red-dark',
+              value: '#9c4755'
+            },{
+              color: 'red-darker',
+              value: '#903040'
+            },{
+              color: 'highlight',
+              value: '#fcf8e3'
+            },{
+              color: 'body-bg',
+              value: 'rgb(255, 255, 255)'
+            },{
+              color: 'text-color',
+              value: '#222'
+            },{
+              color: 'link-color',
+              value: '#428bca'
+            },{
+              color: 'link-hover-color',
+              value: '#1C65A4'
+            },{
+              color: 'link-visited-color',
+              value: '#428bca'
+            },{
+              color: 'link-active-color',
+              value: '#40d080'
+            },{
+              color: 'table-border',
+              value: '#ccc'
+            }
+          ]
+        }
+      },
+      ready: function() {
+        var _this = this;
+        this.colors.forEach(function(item) {
+          _this._addStyle(document.styleSheets[0], '.palette.' + item.color + ' .color', 'background-color: ' + item.value );
+          _this._addStyle(document.styleSheets[0], '.palette.' + item.color, 'outline: 1px solid ' + item.value );
+        });
+      },
+      _getClasses: function(item) {
+        return 'palette ' + item.color;
+      },
+      _getColorDisplay: function(color) {
+        return '--' + color;
+      },
+      _addStyle: function(sheet, selector, rules, index) {
+        if("insertRule" in sheet) {
+          sheet.insertRule(selector + "{" + rules + "}", index);
+        }
+        else if("addRule" in sheet) {
+          sheet.addRule(selector, rules, index);
+        }
+      }
     })
   </script>
 </html>
