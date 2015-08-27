@@ -20,6 +20,8 @@
     "/demo/"
   ],
   "dependencies": {
+    "iron-icon": "PolymerElements/iron-icon#~1.0.3",
+    "iron-iconset-svg": "PolymerElements/iron-iconset-svg#~1.0.4",
     "polymer": "Polymer/polymer#^1.0.0",
     "ui-bootstrap": "git@github.com:LeisureLink/ui-bootstrap.git#gh-pages",
     "ui-layout": "git@github.com:LeisureLink/ui-layout.git#develop"
