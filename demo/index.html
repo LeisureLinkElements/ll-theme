@@ -6,6 +6,7 @@
     <title>ll-theme Demo</title>
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../../polymer/polymer.html">
+    <link rel="import" href="../../iron-autogrow-textarea/iron-autogrow-textarea.html">
     <link rel="import" href="../ll-theme.html">
     <link rel="import" href="../ll-icons.html">
     <style>
@@ -34,6 +35,11 @@
         fill: #0069aa;
         fill: var(--blue-dark);
         cursor: pointer;
+      }
+
+      #myAutogrowTextarea {
+        width:50%;
+        height:auto;
       }
     </style>
   </head>
@@ -105,6 +111,12 @@
     </div>
   </div>
 
+  <h1>Iron Auto-Grow Text Area</h1>
+
+  <div class="form-group">
+    <label for="myAutogrowTextarea">Description:</label>
+    <iron-autogrow-textarea rows="2" max-rows="6" class="form-control" id="myAutogrowTextarea"></iron-autogrow-textarea>
+  </div>
 
   </body>
   <dom-module id="font-demo">
